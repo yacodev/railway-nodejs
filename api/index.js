@@ -19,7 +19,7 @@ app.post("/tokenizeOrder", (req, res) => {
       response.success(req, res, tokenizedOrder, 200);
     })
     .catch((err) => {
-      response.error(req, res, err, 400);
+      response.error(req, res, err, 401);
     });
 });
 
