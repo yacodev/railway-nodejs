@@ -13,6 +13,7 @@ app.use(cors({ origin: true }));
 
 // Get Tokenized Order
 app.post("/tokenizeOrder", (req, res) => {
+  console.log("orden", req.body);
   merchantApi
     .getTokenizedOrder(req.body)
     .then((tokenizedOrder) => {

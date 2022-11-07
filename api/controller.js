@@ -10,6 +10,7 @@ function merchantApi() {
     const urlTokenizedOrder = `${URL_BASE}/merchants/orders`;
 
     const response = await req("POST", urlTokenizedOrder, orderPayload);
+    console.log("response", response);
     //save data in DB
     store.push("orders", {
       token: response.token,
