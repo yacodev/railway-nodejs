@@ -69,6 +69,9 @@ app.delete("/removeCoupons/:orderId/code/:couponCode", (req, res) => {
       response.error(req, res, err, 400);
     });
 });
+app.get("/", (req, res) => {
+  response.success(req, res, { mensage: "hola" }, 200);
+});
 console.log("aqui");
 app.listen(process.env.API_PORT, () => {
   console.log("Node server listening on the port:", process.env.API_PORT);
