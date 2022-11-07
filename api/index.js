@@ -13,6 +13,7 @@ app.use(cors({ origin: true }));
 
 // Get Tokenized Order
 app.post("/tokenizeOrder", (req, res) => {
+  console.log("2222");
   console.log("orden", req.body);
   merchantApi
     .getTokenizedOrder(req.body)
@@ -68,6 +69,7 @@ app.delete("/removeCoupons/:orderId/code/:couponCode", (req, res) => {
       response.error(req, res, err, 400);
     });
 });
+console.log("aqui");
 app.listen(process.env.API_PORT, () => {
   console.log("Node server listening on the port:", process.env.API_PORT);
 });
