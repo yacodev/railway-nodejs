@@ -29,6 +29,7 @@ app.post("/getShippingMethods/:orderId", (req, res) => {
   merchantApi
     .getShippingMethods(req.params.orderId)
     .then((orderWithShippingMethods) => {
+      console.log("response-getShippingMethods", orderWithShippingMethods);
       response.success(req, res, orderWithShippingMethods, 200);
     })
     .catch((err) => {
@@ -40,6 +41,7 @@ app.patch("/setShippingMethod/:orderId/:codeMethod", (req, res) => {
   merchantApi
     .setShippingMethod(req.params.orderId, req.params.codeMethod)
     .then((orderWithShippingMethods) => {
+      console.log("response-setShippingMethod", orderWithShippingMethods);
       response.success(req, res, orderWithShippingMethods, 200);
     })
     .catch((err) => {
@@ -51,6 +53,7 @@ app.post("/applyCoupons/:orderId", (req, res) => {
   merchantApi
     .applyCoupon(req.params.orderId, req.body.coupon_code)
     .then((orderWithToken) => {
+      console.log("response-applyCoupons", orderWithToken);
       response.success(req, res, orderWithToken, 200);
     })
     .catch((err) => {
@@ -62,6 +65,7 @@ app.delete("/removeCoupons/:orderId/code/:couponCode", (req, res) => {
   merchantApi
     .removeCoupon(req.params.orderId, req.params.couponCode)
     .then((orderWithToken) => {
+      console.log("response-removeCoupons", orderWithToken);
       response.success(req, res, orderWithToken, 200);
     })
     .catch((err) => {

@@ -10,7 +10,7 @@ function merchantApi() {
     const urlTokenizedOrder = `${URL_BASE}/merchants/orders`;
 
     const response = await req("POST", urlTokenizedOrder, orderPayload);
-    console.log("response", response);
+    console.log("response- gettokenizeOrder", response);
     //save data in DB
     store.push("orders", {
       token: response.token,
@@ -22,6 +22,8 @@ function merchantApi() {
   async function getShippingMethods(orderId) {
     const { order, token } = await getOrderWithToken(orderId);
 
+    console.log("order - getShippingMethods", order);
+    console.log("token - getShippingMethods", token);
     // set shipping cost and modify total cost in order
     order["shipping_amount"] = shippingMethods[0].cost;
     order["sub_total"] = order["items_total_amount"] + order["shipping_amount"];
@@ -36,7 +38,8 @@ function merchantApi() {
 
   async function setShippingMethod(orderId, codeMethod) {
     const { order, token } = await getOrderWithToken(orderId);
-
+    console.log("order - getShippingMethods", order);
+    console.log("token - getShippingMethods", token);
     //modify shipping cost according new shipping method
     let newShippingCost = 0;
     for (const method in shippingMethods) {
@@ -57,7 +60,8 @@ function merchantApi() {
 
   async function applyCoupon(orderId, couponCode) {
     const { order, token } = await getOrderWithToken(orderId);
-
+    console.log("order - getShippingMethods", order);
+    console.log("token - getShippingMethods", token);
     //validate coupon is available
     const couponSelected = coupons.find((coupon) => coupon.code === couponCode);
     if (!couponSelected) {
@@ -79,7 +83,8 @@ function merchantApi() {
 
   async function removeCoupon(orderId, couponCode) {
     const { order, token } = await getOrderWithToken(orderId);
-
+    console.log("order - getShippingMethods", order);
+    console.log("token - getShippingMethods", token);
     //validate coupon is available
     const couponSelected = coupons.find((coupon) => coupon.code === couponCode);
     if (!couponSelected) {
