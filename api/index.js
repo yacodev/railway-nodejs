@@ -13,7 +13,6 @@ app.use(cors({ origin: true }));
 
 // Get Tokenized Order
 app.post("/tokenizeOrder", (req, res) => {
-  console.log("2222");
   console.log("orden", req.body);
   merchantApi
     .getTokenizedOrder(req.body)
@@ -21,7 +20,7 @@ app.post("/tokenizeOrder", (req, res) => {
       response.success(req, res, tokenizedOrder, 200);
     })
     .catch((err) => {
-      response.error(req, res, err, 401);
+      response.error(req, res, err, 400);
     });
 });
 
@@ -72,7 +71,7 @@ app.delete("/removeCoupons/:orderId/code/:couponCode", (req, res) => {
 app.get("/", (req, res) => {
   response.success(req, res, { mensage: "hola" }, 200);
 });
-console.log("aqui");
+
 app.listen(process.env.API_PORT, () => {
   console.log("Node server listening on the port:", process.env.API_PORT);
 });
