@@ -13,10 +13,10 @@ app.use(cors({ origin: true }));
 
 // Get Tokenized Order
 app.post("/tokenizeOrder", (req, res) => {
-  console.log("orden", req.body);
   merchantApi
     .getTokenizedOrder(req.body)
     .then((tokenizedOrder) => {
+      console.log("good");
       response.success(req, res, tokenizedOrder, 200);
     })
     .catch((err) => {
@@ -30,7 +30,12 @@ app.post("/getShippingMethods/:orderId", (req, res) => {
     .getShippingMethods(req.params.orderId)
     .then((orderWithShippingMethods) => {
       console.log("response-getShippingMethods", orderWithShippingMethods);
-      response.success(req, res, orderWithShippingMethods, 200);
+      res.status(200).send({
+        order: orderWithShippingMethods.order,
+        token: orderWithShippingMethods.token,
+        shipping_methods: orderWithShippingMethods.shipping_methods,
+      });
+      //response.success(req, res, orderWithShippingMethods, 200);
     })
     .catch((err) => {
       response.error(req, res, err, 400);
@@ -42,7 +47,12 @@ app.patch("/setShippingMethod/:orderId/:codeMethod", (req, res) => {
     .setShippingMethod(req.params.orderId, req.params.codeMethod)
     .then((orderWithShippingMethods) => {
       console.log("response-setShippingMethod", orderWithShippingMethods);
-      response.success(req, res, orderWithShippingMethods, 200);
+      res.status(200).send({
+        order: orderWithShippingMethods.order,
+        token: orderWithShippingMethods.token,
+      });
+
+      //response.success(req, res, orderWithShippingMethods, 200);
     })
     .catch((err) => {
       response.error(req, res, err, 400);
@@ -54,7 +64,11 @@ app.post("/applyCoupons/:orderId", (req, res) => {
     .applyCoupon(req.params.orderId, req.body.coupon_code)
     .then((orderWithToken) => {
       console.log("response-applyCoupons", orderWithToken);
-      response.success(req, res, orderWithToken, 200);
+      res.status(200).send({
+        order: orderWithToken.order,
+        token: orderWithToken.token,
+      });
+      //response.success(req, res, orderWithToken, 200);
     })
     .catch((err) => {
       response.error(req, res, err, 400);
@@ -66,7 +80,11 @@ app.delete("/removeCoupons/:orderId/code/:couponCode", (req, res) => {
     .removeCoupon(req.params.orderId, req.params.couponCode)
     .then((orderWithToken) => {
       console.log("response-removeCoupons", orderWithToken);
-      response.success(req, res, orderWithToken, 200);
+      res.status(200).send({
+        order: orderWithToken.order,
+        token: orderWithToken.token,
+      });
+      //response.success(req, res, orderWithToken, 200);
     })
     .catch((err) => {
       response.error(req, res, err, 400);
