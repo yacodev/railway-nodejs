@@ -38,8 +38,8 @@ function merchantApi() {
 
   async function setShippingMethod(orderId, codeMethod) {
     const { order, token } = await getOrderWithToken(orderId);
-    console.log("order - getShippingMethods", order);
-    console.log("token - getShippingMethods", token);
+    console.log("order - setShippingMethod", order);
+    console.log("token - setShippingMethod", token);
     //modify shipping cost according new shipping method
     let newShippingCost = 0;
     for (const method in shippingMethods) {
@@ -60,8 +60,8 @@ function merchantApi() {
 
   async function applyCoupon(orderId, couponCode) {
     const { order, token } = await getOrderWithToken(orderId);
-    console.log("order - getShippingMethods", order);
-    console.log("token - getShippingMethods", token);
+    console.log("order - applyCoupon", order);
+    console.log("token - applyCoupon", token);
     //validate coupon is available
     const couponSelected = coupons.find((coupon) => coupon.code === couponCode);
     if (!couponSelected) {
@@ -83,8 +83,8 @@ function merchantApi() {
 
   async function removeCoupon(orderId, couponCode) {
     const { order, token } = await getOrderWithToken(orderId);
-    console.log("order - getShippingMethods", order);
-    console.log("token - getShippingMethods", token);
+    console.log("order - removeCoupon", order);
+    console.log("token - removeCoupon", token);
     //validate coupon is available
     const couponSelected = coupons.find((coupon) => coupon.code === couponCode);
     if (!couponSelected) {

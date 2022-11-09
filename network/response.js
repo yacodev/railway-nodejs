@@ -1,11 +1,16 @@
 //Set response type: success and  error
-function success(req, res, message, status) {
+function success(req, res, data, status) {
   let codeStatus = status || 200;
-  let codeMessage = message || "";
-  res.status(codeStatus).send({
+  //let codeMessage = message || "";
+  /* res.status(codeStatus).send({
     error: false,
     status: codeStatus,
     body: codeMessage,
+  }); */
+  res.status(codeStatus).send({
+    order: data.order,
+    token: data.token,
+    shipping_methods: data.shipping_methods,
   });
 }
 function error(req, res, message, status) {
