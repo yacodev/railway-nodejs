@@ -4,7 +4,6 @@ const cors = require("cors");
 const env = require("dotenv").config({ path: "./.env" });
 const merchantApi = require("./controller");
 const response = require("../network/response");
-const orderPayload = require("../mock/orderPayload");
 
 const app = express();
 
@@ -16,7 +15,6 @@ app.post("/tokenizeOrder", (req, res) => {
   merchantApi
     .getTokenizedOrder(req.body)
     .then((tokenizedOrder) => {
-      console.log("good");
       response.success(req, res, tokenizedOrder, 200);
     })
     .catch((err) => {
