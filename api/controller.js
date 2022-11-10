@@ -99,6 +99,21 @@ function merchantApi() {
     };
   }
 
+  // notify order:
+  async function notifyStatus(order) {
+    console.log("order-notifyStatus", order);
+    const status = order.status;
+    const orderId = order.order_id;
+    console.log("status", status);
+    console.log("orderId", orderId);
+    return {
+      status,
+      data: {
+        order_id: orderId,
+      },
+    };
+  }
+
   //get Order from Merchant API
   async function getOrderWithToken(orderId) {
     //get token from DB
@@ -147,6 +162,7 @@ function merchantApi() {
     setShippingMethod,
     applyCoupon,
     removeCoupon,
+    notifyStatus,
   };
 }
 

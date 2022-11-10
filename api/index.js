@@ -88,8 +88,15 @@ app.delete("/removeCoupons/:orderId/code/:couponCode", (req, res) => {
       response.error(req, res, err, 400);
     });
 });
-app.get("/", (req, res) => {
-  response.success(req, res, { mensage: "hola" }, 200);
+app.post("/notify", (req, res) => {
+  merchantApi
+    .notifyStatus(req.body.order)
+    .then((response) => {
+      res.status(200).send(response);
+    })
+    .catch((err) => {
+      response.error(req, res, err, 400);
+    });
 });
 
 app.listen(process.env.API_PORT, () => {
