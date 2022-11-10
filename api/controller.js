@@ -104,8 +104,8 @@ function merchantApi() {
     console.log("order-notifyStatus", order);
     const status = order.status;
     const orderId = order.order_id;
-    console.log("status", status);
-    console.log("orderId", orderId);
+    //console.log("status", status);
+    //console.log("orderId", orderId);
     return {
       status,
       data: {
