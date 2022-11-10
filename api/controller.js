@@ -3,11 +3,11 @@ const shippingMethods = require("../mock/shippingMethods");
 const coupons = require("../mock/coupons");
 const store = require("../store/db");
 
-const URL_BASE = "https://staging-apigw.getduna.com"; // Merchant API
+//const URL_BASE = "https://staging-apigw.getduna.com"; // Merchant API
 
 function merchantApi() {
   async function getTokenizedOrder(orderPayload) {
-    const urlTokenizedOrder = `${URL_BASE}/merchants/orders`;
+    const urlTokenizedOrder = `${process.env.URL_BASE}/merchants/orders`;
 
     const response = await req("POST", urlTokenizedOrder, orderPayload);
     //console.log("response- gettokenizeOrder", response.token);
@@ -123,7 +123,7 @@ function merchantApi() {
     }
     const token = result.token;
     // get order from Merchant API
-    const urlOrderWithToken = `${URL_BASE}/merchants/orders/${token}`;
+    const urlOrderWithToken = `${process.env.URL_BASE}/merchants/orders/${token}`;
     const response = await req("GET", urlOrderWithToken);
     if (response.error) {
       throw new Error("Error internal");
