@@ -27,7 +27,7 @@ app.post("/getShippingMethods/:orderId", (req, res) => {
   merchantApi
     .getShippingMethods(req.params.orderId)
     .then((orderWithShippingMethods) => {
-      console.log("response-getShippingMethods", orderWithShippingMethods);
+      console.log("response-getShippingMethods");
       res.status(200).send({
         order: orderWithShippingMethods.order,
         token: orderWithShippingMethods.token,
@@ -44,7 +44,7 @@ app.patch("/setShippingMethod/:orderId/:codeMethod", (req, res) => {
   merchantApi
     .setShippingMethod(req.params.orderId, req.params.codeMethod)
     .then((orderWithShippingMethods) => {
-      console.log("response-setShippingMethod", orderWithShippingMethods);
+      console.log("response-setShippingMethod");
       res.status(200).send({
         order: orderWithShippingMethods.order,
         token: orderWithShippingMethods.token,
@@ -61,7 +61,6 @@ app.post("/applyCoupons/:orderId", (req, res) => {
   merchantApi
     .applyCoupon(req.params.orderId, req.body.coupon_code)
     .then((orderWithToken) => {
-      console.log("response-applyCoupons", orderWithToken);
       res.status(200).send({
         order: orderWithToken.order,
         token: orderWithToken.token,
@@ -77,7 +76,7 @@ app.delete("/removeCoupons/:orderId/code/:couponCode", (req, res) => {
   merchantApi
     .removeCoupon(req.params.orderId, req.params.couponCode)
     .then((orderWithToken) => {
-      console.log("response-removeCoupons", orderWithToken);
+      console.log("response-removeCoupons");
       res.status(200).send({
         order: orderWithToken.order,
         token: orderWithToken.token,

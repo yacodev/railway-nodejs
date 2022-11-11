@@ -3,14 +3,12 @@ const shippingMethods = require("../mock/shippingMethods");
 const coupons = require("../mock/coupons");
 const store = require("../store/db");
 
-//const URL_BASE = "https://staging-apigw.getduna.com"; // Merchant API
-
 function merchantApi() {
   async function getTokenizedOrder(orderPayload) {
     const urlTokenizedOrder = `${process.env.URL_BASE}/merchants/orders`;
 
     const response = await req("POST", urlTokenizedOrder, orderPayload);
-    //console.log("response- gettokenizeOrder", response.token);
+    console.log("response- gettokenizeOrder", response.token);
     //save data in DB
     store.push("orders", {
       token: response.token,
@@ -101,7 +99,7 @@ function merchantApi() {
 
   // notify order:
   async function notifyStatus(order) {
-    console.log("order-notifyStatus", order);
+    console.log("order-notifyStatus");
     const status = order.status;
     const orderId = order.order_id;
     //console.log("status", status);
