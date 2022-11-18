@@ -54,6 +54,8 @@ function merchantApi() {
   }
 
   async function applyCoupon(orderId, couponCode) {
+    console.log("orderId", orderId);
+    console.log("couponCode", couponCode);
     const { order, token } = await getOrderWithToken(orderId);
     console.log("token - applyCoupon", token);
     //validate coupon is available

@@ -23,9 +23,9 @@ app.post("/tokenizeOrder", (req, res) => {
 });
 
 // Set ShippingMethods to Order
-app.post("/getShippingMethods/:order_id", (req, res) => {
+app.post("/getShippingMethods/:order_token", (req, res) => {
   merchantApi
-    .getShippingMethods(req.params.order_id)
+    .getShippingMethods(req.params.order_token)
     .then((orderWithShippingMethods) => {
       console.log("response-getShippingMethods");
       res.status(200).send({
@@ -60,11 +60,9 @@ app.patch("/setShippingMethod/:order_id/:code_method", (req, res) => {
 app.post("/applyCoupons/:order_id", (req, res) => {
   merchantApi
     .applyCoupon(req.params.order_id, req.body.coupon_code)
-    .then((orderWithToken) => {
-      res.status(200).send({
-        order: orderWithToken.order,
-        token: orderWithToken.token,
-      });
+    .then((orderWithDiscount) => {
+      console.log("apply-cupon", orderWithDiscount.order.discounts);
+      res.status(200).send(orderWithDiscount);
       // response.success(req, res, orderWithToken, 200);
     })
     .catch((err) => {
