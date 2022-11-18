@@ -69,7 +69,7 @@ function merchantApi() {
     order["total_amount"] =
       order["sub_total"] + order["shipping_amount"] + order["tax_amount"];
     //set coupon structure
-    order["discounts"] = couponSelected;
+    order["discounts"] = [couponSelected];
 
     return {
       order: order,
